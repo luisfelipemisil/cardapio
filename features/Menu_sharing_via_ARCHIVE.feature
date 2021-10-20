@@ -11,4 +11,10 @@ When: the Share FILE button is clicked
 Then: A share FILE is generated
 and : and the download starts
 
+Scenario:Share menu via ARCHIVE
+Given: I'm on the menu screen with all items
+When: the Share FILE button is not clicked
+Then: A share FILE is not generated
+and : and the download don't starts
+
 responsible: Luis Felipe Miranda
