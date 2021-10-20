@@ -12,4 +12,4 @@ When: the desired item's share button is clicked
 Then: generate a share link
 And: is copied to the clipboard
 
-responsible: Luis Felipe Miranda
+responsible: Luis Felipe Miranda da Silva
