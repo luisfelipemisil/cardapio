@@ -8,5 +8,6 @@ Scenario:Custom Link
 Given: I have the share link copied to the clipboard
 When: This link is sent to another person via the social network
 Then: show images related to service, restaurant, products
+And: me
 
 responsible: Luis Felipe Miranda
