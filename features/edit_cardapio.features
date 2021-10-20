@@ -13,3 +13,8 @@ And: and an icon beside each Item information is show to indicate that is possib
 Scenario: Fail to Edit an Ingredient of a Cardapio Item
 
 Scenario: Fail to Edit a Photo of a Cardapio Item
+
+
+Scenario: Fail to Edit an Description of a Cardapio Item
+
+Scenario: Fail to Edit a Price of a Cardapio Item
