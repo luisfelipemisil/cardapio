@@ -12,7 +12,10 @@ Scenario: Edit the Cardapio Item ingredients list
 
 Scenario: Edit the CArdapio Item Photo
 
+Scenario: Edit the CArdapio Item Price
+
 Scenario: Fail to Edit an Ingredient of a Cardapio Item
 
 Scenario: Fail to Edit a Photo of a Cardapio Item
+
 
