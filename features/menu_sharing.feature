@@ -10,4 +10,9 @@ When: the share button is clicked
 Then: A share link is generated
 and : copied to user's clipboard
 
+Scenario:Share menu
+Given: I'm on the menu screen with all items
+When: user click on item
+Then: nothing happens
+
 responsible: Luis Felipe Miranda
