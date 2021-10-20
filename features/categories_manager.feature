@@ -1,0 +1,1 @@
+Isso aqui será uma feature de Categoria dos itens.
