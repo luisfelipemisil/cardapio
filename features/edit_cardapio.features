@@ -9,3 +9,7 @@ Then: a window showing the Item's photo,description,ingredients,price and quanti
 And: and an icon beside each Item information is show to indicate that is possible to edit
 
 //change to be tracked by the command git diff
+
+Scenario: Fail to Edit an Ingredient of a Cardapio Item
+
+Scenario: Fail to Edit a Photo of a Cardapio Item
