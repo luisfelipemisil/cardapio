@@ -13,6 +13,5 @@ And: me
 Scenario:Custom Link
 Given: I have the share link copied to the clipboard
 When: This link is sent to another person via the social network
-Then: show a text on a image related with my restaurant
-
-responsible: Luis Felipe Miranda
+Then: show a text on a image related with my me
+And: my and my produtcs
