@@ -16,3 +16,16 @@ Feature: Listar itens do cardápio
         When o cliente acessar a tela "Cardapio"
         Then uma lista de itens detalhando nome, preço, descrição com ingredientes e uma foto do prato será enviada ao cliente
         And o sistema tem seus itens armazenados
+
+    Scenario: Não há itens a serem listados - GUI
+        Given um usuário conseguiu logar no sistema com credenciais corretas
+        When um usuário acessa a tela "Cardapio"
+        And não existem itens a serem listados
+        Then uma mensagem no lugar da lista é exibida, informando que não há itens a serem listados, sugerindo a criação de alguns
+
+    Scenario: Não há itens a serem listados - Serviço
+        Given o sistema tem seus itens armazenados
+        When o cliente acessar a tela "Cardapio"
+        And não houverem itens a serem listados
+        Then um aviso de que não existem itens será enviado ao cliente
+        And o sistema tem seus itens armazenados
