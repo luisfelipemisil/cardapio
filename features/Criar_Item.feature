@@ -42,7 +42,7 @@ Feature: Cadastrar itens no cardápio
         And clicar no botão "Confirmar"
         Then o snackbar "Feedback", com uma mensagem de recusa, será exibida, informando o motivo pelo qual o item não pôde ser adicionado
 
-    Scenario: Negar cadastro - Serviço
+    Scenario: Negar cadastro - Serviço  
         Given o sistema tem seus itens armazenados
         When o sistema receber uma solicitação de cadastrar novo item
         And os campos não estiverem devidamente preenchidos
