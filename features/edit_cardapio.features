@@ -1,0 +1,26 @@
+Feature: Edit Cardapio
+As: as a Restaurante Owner
+I want to: edit a Cardapio Item photo,description,ingredients,price and/or quantity 
+
+Scenario: atempt to Edit a Cardapio Item
+/Given: I'm on the menu screen with all items
+When: the desired item's edit button is clicked
+Then: a window showing the Item's photo,description,ingredients,price and quantity information
+And: and an icon beside each Item information is show to indicate that is possible to edit
+
+Scenario: Edit the Cardapio Item ingredients list
+
+Scenario: Edit the CArdapio Item Photo
+
+Scenario: Edit the CArdapio Item Price
+
+Scenario: Fail to Edit an Ingredient of a Cardapio Item
+
+Scenario: Fail to Edit a Photo of a Cardapio Item
+
+Scenario: Fail to Edit an Description of a Cardapio Item
+
+Scenario: Fail to Edit a Price of a Cardapio Item
+
+Scenario: Fail to atempt to edit an Item
+
