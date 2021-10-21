@@ -18,6 +18,12 @@ Feature: Cadastrar itens no cardápio
         When eu clicar no botão "Ok", ou alguns segundos se passarem
         Then o popup "Feedback" se fechará
 
+    Scenario: Mostrar snackbar "Feedback"
+        Given a tela "Cardapio"
+        When o sistema solicitar uma mensagem de confirmação
+        Then o snackbar "Feedback", com uma mensagem de confirmação, será exibida
+        And o snackbar desaparecerá em alguns segundos, ou após clicar no botão "Ok" no snackbar
+
     Scenario: Confirmar cadastro - Serviço
         Given o sistema tem seus itens armazenados
         When o sistema receber uma solicitação de cadastrar novo item
