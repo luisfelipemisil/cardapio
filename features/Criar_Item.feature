@@ -1,5 +1,5 @@
 
-Feature: Cadastrar itens no w2
+Feature: Cadastrar itens no cardápio
     As a gerente
     I want to registrar itens no cardápio
     So that eu possa adicionar novos itens ao meu cardápio
