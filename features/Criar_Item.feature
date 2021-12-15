@@ -47,4 +47,4 @@ Feature: Cadastrar itens no cardápio
         When o sistema receber uma solicitação de cadastrar novo item
         And os campos não estiverem devidamente preenchidos
         Then uma resposta de negação será enviada ao cliente
-        And o sistema tem seus itens armazenados   
+        And o sistema tem seus itens armazenados      
