@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { firestore } from '../firebase';
-import { collection, addDoc } from "firebase/firestore"; 
+import { doc, getDoc } from "firebase/firestore";
 
 @Component({
   selector: 'app-root',
@@ -12,11 +12,7 @@ export class AppComponent {
 
   async firebase_test(){
     try {
-      const docRef = await addDoc(collection(firestore, "users"), {
-        first: "Ada",
-        last: "Lovelace",
-        born: 1815
-      });
+      const docRef = await getDoc(doc(firestore, 'users'))
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);
