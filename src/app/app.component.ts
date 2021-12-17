@@ -8,7 +8,8 @@ import { doc, getDoc } from "firebase/firestore";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'cardapio';
+  title = 'Bem vindo ao Restaurante do Casimiro!';
+  subtitle = 'Por favor, escolha uma opção, ou edite o cardápio!'
 
   async firebase_test(){
     try {
