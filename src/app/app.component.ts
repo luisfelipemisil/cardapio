@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { firestore } from '../firebase';
 import { doc, getDoc } from "firebase/firestore";
 
+// TODO use interface!!
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

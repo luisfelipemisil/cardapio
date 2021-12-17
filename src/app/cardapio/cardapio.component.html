@@ -1,1 +1,12 @@
-<p>cardapio works!</p>
+<div id="lista-cardapio">
+    <!-- TODO style this! -->
+    <mat-list role="listbox" class="list" >
+        <!-- TODO separate by category -->
+        <mat-list-item *ngFor="let mock of mock_stuff" >
+            <h3 matLine> {{mock.nome}} </h3>
+            <p matLine> R$ {{mock.preco}} </p>
+            <p matLine> {{mock.descricao}} </p>
+            <mat-divider></mat-divider>
+        </mat-list-item>
+    </mat-list>
+</div>

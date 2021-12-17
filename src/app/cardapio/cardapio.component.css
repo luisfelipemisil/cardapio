@@ -1,0 +1,13 @@
+#lista-cardapio {
+    margin: 2.5% 0%;
+}
+
+.list-item {
+    color: black;
+}
+
+.list {
+    background-color: rgb(33, 44, 48);
+    border-radius: 5px;
+    box-shadow: 0 10px  5px rgba(0, 0, 0, 0.123);
+}
