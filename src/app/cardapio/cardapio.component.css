@@ -1,5 +1,8 @@
 #lista-cardapio {
     margin: 2.5% 0%;
+    border-radius: 5px;
+    border: thick solid rgba(0, 191, 255, 0.281);
+    box-shadow: 0 0 5px 2px;
 }
 
 .list-item {

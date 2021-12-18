@@ -1,13 +1,13 @@
 <!-- TODO accordion? check in expansion-panel page -->
-<mat-expansion-panel>
+<mat-expansion-panel hideToggle>
     <mat-expansion-panel-header>
-        <!-- <img matListAvatar src="..."/> -->
-        <mat-panel-title>
-            Self aware panel
+        <img matListAvatar src="..."/>
+        <mat-panel-title style="flex-grow: 0;">
+            {{item.nome}}
         </mat-panel-title>
         <mat-panel-description>
-            Describe
+            {{item.preco}}
         </mat-panel-description>
     </mat-expansion-panel-header>
-    <p>I'm visible because I am open</p>
+    <p>{{item.descricao}}</p>
 </mat-expansion-panel>
