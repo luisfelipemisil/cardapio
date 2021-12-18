@@ -16,7 +16,8 @@ export class ItemCardapioComponent implements OnInit {
       nome: '',
       foto: '',
       preco: 0,
-      descricao: ''
+      descricao: '',
+      categoria: ''
     }
   }
 
