@@ -1,11 +1,46 @@
+<style>
+    mat-dialog-content {
+        display:flex;
+        flex-flow: wrap;
+        flex-direction: row;
+    }
+    mat-form-field {
+        margin: 0 2% 3% 0%;
+    }
+    .growable {
+        flex-grow: 2;
+    }
+</style>
+
 <h2 mat-dialog-title>Novo Item</h2>
 
-<div mat-dialog-content>
-Abigobal
+<mat-dialog-content>
+    <!-- TODO rules for the form! -->
+    <mat-form-field appearance="fill" [ngClass]="'growable'">
+        <mat-label>Nome</mat-label>
+        <input matInput/>
+    </mat-form-field>
 
-</div>
+    <mat-form-field appearance="fill">
+        <mat-label>Preço</mat-label>
+        <input matInput/>
+    </mat-form-field>
 
-<!-- TODO get why these imports dont work here and style it -->
-<div mat-dialog-actions>
+    <mat-form-field appearance="fill">
+        <mat-label>Categoria</mat-label>
+        <input matInput/>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" [ngClass]="'growable'">
+        <mat-label>Descrição</mat-label>
+        <input matInput/>
+    </mat-form-field>
+
+    <input multiple type="file"/>
+    <br><mat-label>Foto</mat-label>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-raised-button (click)="request_item_insertion() //TODO send form">Criar Item</button>
     <button mat-raised-button mat-dialog-close>Fechar</button>
-</div>
+</mat-dialog-actions>

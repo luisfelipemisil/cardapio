@@ -12,7 +12,9 @@ import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list'; //TODO put the specifics in a separate module?
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule} from '@angular/material/button';
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 
 // Custom modules
@@ -39,7 +41,9 @@ import { CardapioBotoesComponent, ExcluirItemDialog, NovoItemDialog } from './ca
     MatListModule,
     MatExpansionModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
