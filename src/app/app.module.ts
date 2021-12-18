@@ -18,7 +18,7 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 // Custom modules
 import {CardapioComponent} from './cardapio/cardapio.component';
 import { ItemCardapioComponent } from './item-cardapio/item-cardapio.component';
-import { CardapioBotoesComponent } from './cardapio-botoes/cardapio-botoes.component'
+import { CardapioBotoesComponent, ExcluirItemDialog, NovoItemDialog } from './cardapio-botoes/cardapio-botoes.component'
 
 @NgModule({
   declarations: [
@@ -26,6 +26,8 @@ import { CardapioBotoesComponent } from './cardapio-botoes/cardapio-botoes.compo
     CardapioComponent,
     ItemCardapioComponent,
     CardapioBotoesComponent,
+    NovoItemDialog,
+    ExcluirItemDialog
   ],
   imports: [
     BrowserModule,
