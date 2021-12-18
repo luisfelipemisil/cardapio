@@ -7,6 +7,8 @@ import { ItemCardapio, mocks } from '../item.cardapio';
   styleUrls: ['./cardapio.component.css']
 })
 
+// TODO this should check for changes in the server periodically (even better if it emits automatically)
+// TODO listen to changes from the interaction button pop-ups
 export class CardapioComponent implements OnInit {
 
   //TODO remove later

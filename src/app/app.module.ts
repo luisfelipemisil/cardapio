@@ -12,6 +12,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list'; //TODO put the specifics in a separate module?
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule} from '@angular/material/button';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+
 
 // Custom modules
 import {CardapioComponent} from './cardapio/cardapio.component';
@@ -23,7 +25,7 @@ import { CardapioBotoesComponent } from './cardapio-botoes/cardapio-botoes.compo
     AppComponent,
     CardapioComponent,
     ItemCardapioComponent,
-    CardapioBotoesComponent
+    CardapioBotoesComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,8 @@ import { CardapioBotoesComponent } from './cardapio-botoes/cardapio-botoes.compo
     MatCardModule,
     MatListModule,
     MatExpansionModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
