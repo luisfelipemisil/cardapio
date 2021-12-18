@@ -2,10 +2,22 @@
     <!-- TODO style this! -->
     <mat-list role="listbox" class="list" >
         <!-- TODO separate by category -->
+        <!-- TODO add src -->
+
+        <!-- <div *ngFor="let mock of mock_stuff">
+            <app-item-cardapio [item]="mock" ></app-item-cardapio>
+        </div> -->
+
         <mat-list-item *ngFor="let mock of mock_stuff" >
-            <h3 matLine> {{mock.nome}} </h3>
+            
+            <img matListAvatar src="..."/>
+            <!-- <h3 matLine> {{mock.nome}} </h3>
             <p matLine> R$ {{mock.preco}} </p>
-            <p matLine> {{mock.descricao}} </p>
+            <p matLine> {{mock.descricao}} </p> -->
+
+            <app-item-cardapio [item]="mock" ></app-item-cardapio>
+            <!-- <mat-icon *ngIf="!toggle.list">expand_more</mat-icon>
+            <mat-icon *ngIf="toggle.list">expand_less</mat-icon> -->
             <mat-divider></mat-divider>
         </mat-list-item>
     </mat-list>

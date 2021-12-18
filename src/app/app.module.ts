@@ -9,15 +9,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
-import {MatListModule} from '@angular/material/list'; //TODO put this in a separate module? 
+import {MatListModule} from '@angular/material/list'; //TODO put the specifics in a separate module?
+import {MatExpansionModule} from '@angular/material/expansion';
 
 // Custom modules
-import {CardapioComponent} from './cardapio/cardapio.component'
+import {CardapioComponent} from './cardapio/cardapio.component';
+import { ItemCardapioComponent } from './item-cardapio/item-cardapio.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    CardapioComponent
+    CardapioComponent,
+    ItemCardapioComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,8 @@ import {CardapioComponent} from './cardapio/cardapio.component'
     MatToolbarModule,
     MatIconModule,
     MatCardModule,
-    MatListModule
+    MatListModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
