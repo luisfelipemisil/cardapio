@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CardapioMiddleBackService } from '../cardapio-middle-back.service';
+import { ItemCardapio } from '../item.cardapio';
 
 @Component({
   selector: 'app-cardapio-botoes',
@@ -21,6 +22,7 @@ export class CardapioBotoesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       // TODO send request
+      console.log(`terminei, result é ${result}`)
     });
   }
 
@@ -29,12 +31,8 @@ export class CardapioBotoesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       // TODO send request
+      console.log('eu executo mesmo quando clico em concluir?')
     });
-  }
-
-  // TODO send confirmation
-  request_item_insertion(): void {
-
   }
 
 }
@@ -45,7 +43,25 @@ export class CardapioBotoesComponent implements OnInit {
 })
 
 export class NovoItemDialog {
-  constructor(private cardapioMiddleBackService: CardapioMiddleBackService) {}
+  constructor(private cardapioMiddleBackService: CardapioMiddleBackService, public dialogRef: MatDialogRef<NovoItemDialog>) {
+    this.item_creation_service = this.cardapioMiddleBackService.item_creation_service
+
+    this.form = this.form
+  }
+
+  item_creation_service: any = () => {}
+
+  form: ItemCardapio = {
+    nome: '',
+    foto: '',
+    preco: 0,
+    descricao: '',
+    categoria: ''
+  }
+
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
 }
 
 @Component({

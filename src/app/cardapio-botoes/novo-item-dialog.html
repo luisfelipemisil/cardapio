@@ -15,32 +15,34 @@
 <h2 mat-dialog-title>Novo Item</h2>
 
 <mat-dialog-content>
+    <form #novoItemForm="ngForm">
     <!-- TODO rules for the form! -->
     <mat-form-field appearance="fill" [ngClass]="'growable'">
         <mat-label>Nome</mat-label>
-        <input matInput/>
+        <input matInput [(ngModel)]="form.nome" name="nome">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
         <mat-label>Preço</mat-label>
-        <input matInput/>
+        <input matInput [(ngModel)]="form.preco" name="preco">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
         <mat-label>Categoria</mat-label>
-        <input matInput/>
+        <input matInput [(ngModel)]="form.categoria" name="categoria">
     </mat-form-field>
 
     <mat-form-field appearance="fill" [ngClass]="'growable'">
         <mat-label>Descrição</mat-label>
-        <input matInput/>
+        <input matInput [(ngModel)]="form.descricao" name="descricao">
     </mat-form-field>
 
-    <input multiple type="file"/>
+    <input multiple type="file" [(ngModel)]="form.foto" name="foto">
     <br><mat-label>Foto</mat-label>
+    </form>
 </mat-dialog-content>
 
 <mat-dialog-actions>
-    <button mat-raised-button (click)="true //TODO send form">Criar Item</button>
+    <button type="submit" mat-raised-button (click)="item_creation_service(novoItemForm.form.value); closeDialog()">Criar Item</button>
     <button mat-raised-button mat-dialog-close>Fechar</button>
 </mat-dialog-actions>
