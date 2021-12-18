@@ -11,16 +11,19 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list'; //TODO put the specifics in a separate module?
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatButtonModule} from '@angular/material/button';
 
 // Custom modules
 import {CardapioComponent} from './cardapio/cardapio.component';
-import { ItemCardapioComponent } from './item-cardapio/item-cardapio.component'
+import { ItemCardapioComponent } from './item-cardapio/item-cardapio.component';
+import { CardapioBotoesComponent } from './cardapio-botoes/cardapio-botoes.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     CardapioComponent,
-    ItemCardapioComponent
+    ItemCardapioComponent,
+    CardapioBotoesComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,8 @@ import { ItemCardapioComponent } from './item-cardapio/item-cardapio.component'
     MatIconModule,
     MatCardModule,
     MatListModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

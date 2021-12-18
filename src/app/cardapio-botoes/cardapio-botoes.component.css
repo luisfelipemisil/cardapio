@@ -1,0 +1,7 @@
+#cardapio-botoes {
+    display: flex;
+    margin: 5% 1% 2.5% 0%;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 5%;
+}
