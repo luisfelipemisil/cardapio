@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-
+import { CardapioMiddleBackService } from '../cardapio-middle-back.service';
 
 @Component({
   selector: 'app-cardapio-botoes',
@@ -11,7 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 // TODO emit to the list when changes are made, telling it to refetch the list
 export class CardapioBotoesComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(private cardapioMiddleBackService: CardapioMiddleBackService,public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -20,7 +20,7 @@ export class CardapioBotoesComponent implements OnInit {
     const dialogRef = this.dialog.open(NovoItemDialog, {width: '50%', height: 'auto'})
 
     dialogRef.afterClosed().subscribe(result => {
-      // TODO send
+      // TODO send request
     });
   }
 
@@ -28,8 +28,13 @@ export class CardapioBotoesComponent implements OnInit {
     const dialogRef = this.dialog.open(ExcluirItemDialog, {width: '50%', height: 'auto'})
 
     dialogRef.afterClosed().subscribe(result => {
-      // TODO send
+      // TODO send request
     });
+  }
+
+  // TODO send confirmation
+  request_item_insertion(): void {
+
   }
 
 }
@@ -39,7 +44,9 @@ export class CardapioBotoesComponent implements OnInit {
   templateUrl: 'novo-item-dialog.html'
 })
 
-export class NovoItemDialog {}
+export class NovoItemDialog {
+  constructor(private cardapioMiddleBackService: CardapioMiddleBackService) {}
+}
 
 @Component({
   selector: 'excluir-item-dialog',

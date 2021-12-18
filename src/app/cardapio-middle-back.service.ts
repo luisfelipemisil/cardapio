@@ -5,6 +5,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CardapioMiddleBackService {
-
   constructor() { }
+
+  item_creation_service(form: any) {
+    
+  }
 }
