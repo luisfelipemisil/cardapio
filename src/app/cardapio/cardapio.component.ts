@@ -33,7 +33,6 @@ export class CardapioComponent implements OnInit {
         trueItem['checked'] = false
         this.items.push(trueItem)
       })
-    
     })
   }
 
