@@ -95,4 +95,24 @@ export class CardapioMiddleBackService {
   }
 
   categorias: string[] = []
+
+  // ? checa a existência, retorna o documento a qual pertence?
+  _checkCategoryExistence(categoria: string): Observable<any> {
+
+    let condicao = where('categoria', '==', categoria)
+
+    let queryToRun = query(collection(firestore, 'rest-casimiro'), condicao)
+
+    let queryPromise = getDocs(queryToRun).then(docs => {
+      console.log(`existe ${docs.docs.length} docs c a categoria ${categoria}`)
+      if(docs.docs.length == 0){
+        return false
+      }else{
+        return true
+      }
+    })
+
+    const observable = from(queryPromise)
+    return observable
+  }
 }

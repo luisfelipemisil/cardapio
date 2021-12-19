@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Nova categoria</h2>
+
+<div mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Categoria</mat-label>
+        <input matInput [formControl]="categoria" name="categoria">
+    </mat-form-field>
+
+</div>
+
+<div mat-dialog-actions>
+    <button mat-raised-button (click)="sendCategoria()">Excluir Item</button>
+    <button mat-raised-button mat-dialog-close>Fechar</button>
+</div>

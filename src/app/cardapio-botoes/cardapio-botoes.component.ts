@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CardapioMiddleBackService } from '../cardapio-middle-back.service';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Validators, FormBuilder, FormControl } from '@angular/forms';
 import { ItemCardapio } from '../item.cardapio';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -22,8 +22,12 @@ export class CardapioBotoesComponent implements OnInit {
     const dialogRef = this.dialog.open(NovoItemDialog, {width: '50%', height: 'auto'})
   }
 
-  excluir_item():void {
+  excluir_item(): void {
     const dialogRef = this.dialog.open(ExcluirItemDialog, {width: '50%', height: 'auto'}) 
+  }
+
+  nova_categoria(): void {
+    const dialogRef = this.dialog.open(NovaCategoriaDialog, {width: '50%', height: 'auto'})
   }
 
 }
@@ -110,7 +114,6 @@ export class NovoItemDialog {
           if(result2 = 'ok'){
             this._snackbar.open('Sucesso!', 'Fechar')
             this.closeDialog()
-            setTimeout(() => this.invalidForm = false, 2500)
           // ? Caso não seja
           }else if(result == 'internet'){
             this._snackbar.open('Verifique sua conexão!', 'Fechar')
@@ -129,3 +132,41 @@ export class NovoItemDialog {
 })
 
 export class ExcluirItemDialog {}
+
+@Component({
+  selector: 'nova-categoria-dialog',
+  templateUrl: 'nova-categoria-dialog.html'
+})
+
+export class NovaCategoriaDialog {
+  constructor(private cardapioMiddleBackService: CardapioMiddleBackService, private _snackbar: MatSnackBar, public dialogRef: MatDialogRef<NovoItemDialog>) {
+    this.categoria = this.categoria
+    this.invalidForm = this.invalidForm
+  }
+
+  categoria = new FormControl('')
+
+  sendCategoria(): void {
+    let categoria = this.categoria.value
+
+    let resultado = this.cardapioMiddleBackService._checkCategoryExistence(categoria)
+    resultado.subscribe(exists => {
+      console.log(`retorno é ${exists}`)
+      console.log(exists)
+      if(exists){
+        //deny, stay on page
+        console.log('exists!')
+        setTimeout(() => this.invalidForm = false, 2500)
+      }else{
+        this._snackbar.open('Categoria Criada!', 'Fechar')
+        this.closeDialog()
+      }
+    })
+  }
+  
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
+
+  invalidForm: boolean = false
+}

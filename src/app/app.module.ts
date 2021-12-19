@@ -23,7 +23,7 @@ import {MatSelectModule} from '@angular/material/select';
 // Custom modules
 import {CardapioComponent} from './cardapio/cardapio.component';
 import { ItemCardapioComponent } from './item-cardapio/item-cardapio.component';
-import { CardapioBotoesComponent, ExcluirItemDialog, NovoItemDialog } from './cardapio-botoes/cardapio-botoes.component'
+import { CardapioBotoesComponent, ExcluirItemDialog, NovoItemDialog, NovaCategoriaDialog } from './cardapio-botoes/cardapio-botoes.component'
 import { BasicSnackBar } from './basic.snackbar';
 
 @NgModule({
@@ -34,7 +34,8 @@ import { BasicSnackBar } from './basic.snackbar';
     CardapioBotoesComponent,
     NovoItemDialog,
     ExcluirItemDialog,
-    BasicSnackBar
+    BasicSnackBar,
+    NovaCategoriaDialog
   ],
   imports: [
     BrowserModule,
