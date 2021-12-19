@@ -20,29 +20,34 @@
     <mat-form-field appearance="fill" [ngClass]="'growable'">
         <mat-label>Nome</mat-label>
         <input matInput formControlName="nome" name="nome">
+        <mat-error *ngIf="formControl.controls['nome'].invalid" > {{getErrorMessage('nome')}} </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
         <mat-label>Preço</mat-label>
         <input matInput formControlName="preco" name="preco">
+        <mat-error *ngIf="formControl.controls['preco'].invalid" > {{getErrorMessage('preco')}} </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
         <mat-label>Categoria</mat-label>
         <input matInput formControlName="categoria" name="categoria">
+        <mat-error *ngIf="formControl.controls['categoria'].invalid" > {{getErrorMessage('categoria')}} </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill" [ngClass]="'growable'">
         <mat-label>Descrição</mat-label>
         <input matInput formControlName="descricao" name="descricao">
+        <mat-error *ngIf="formControl.controls['descricao'].invalid" > {{getErrorMessage('descricao')}} </mat-error>
     </mat-form-field>
 
     <input multiple type="file" formControlName="foto" name="foto">
+    <!-- <mat-error *ngIf="formControl.controls['foto'].invalid" > {{getErrorMessage('foto')}} </mat-error> -->
     <br><mat-label>Foto</mat-label>
     
 </mat-dialog-content>
 
 <mat-dialog-actions>
-    <button type="submit" mat-raised-button [disabled]="!formControl.valid">Criar Item</button>
+    <button type="submit" mat-raised-button [disabled]="formControl.invalid">Criar Item</button>
     <button mat-raised-button mat-dialog-close>Fechar</button>
 </mat-dialog-actions></form>

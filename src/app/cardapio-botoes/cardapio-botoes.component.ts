@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CardapioMiddleBackService } from '../cardapio-middle-back.service';
 import { ItemCardapio } from '../item.cardapio';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-cardapio-botoes',
@@ -33,12 +33,12 @@ export class CardapioBotoesComponent implements OnInit {
 })
 
 export class NovoItemDialog {
-  constructor(private cardapioMiddleBackService: CardapioMiddleBackService, public dialogRef: MatDialogRef<NovoItemDialog>) {
+  constructor(private cardapioMiddleBackService: CardapioMiddleBackService, public dialogRef: MatDialogRef<NovoItemDialog>, private fb: FormBuilder) {
     this.itemCreationService = this.cardapioMiddleBackService.itemCreationService
 
     this.tellRefresh = this.cardapioMiddleBackService.tellRefresh
 
-    this.form = this.form
+    this.formControl = this.formControl
 
     this.formControl.setValue({
       nome: '',
@@ -55,24 +55,29 @@ export class NovoItemDialog {
 
   tellRefresh: any
 
-  formControl = new FormGroup({
-    nome: new FormControl(''),
-    foto: new FormControl(''),
-    preco: new FormControl(0),
-    descricao: new FormControl(''),
-    categoria: new FormControl('')
+  formControl = this.fb.group({
+    nome: ['', Validators.required],
+    foto: [''], //TODO correct validation in photo
+    preco: [0, [Validators.required, Validators.min(1), Validators.pattern(/[0-9]/)]],
+    descricao: ['', Validators.required],
+    categoria: ['', Validators.required] 
   })
 
-  form: ItemCardapio = {
-    nome: '',
-    foto: '',
-    preco: 0,
-    descricao: '',
-    categoria: ''
-  }
-
-  onSubmit(): void {
-    console.log('RODEI VIU?')
+  getErrorMessage(field: string): any {
+    let controls = this.formControl.controls
+    if(field == 'nome' && controls[field].invalid){
+      return 'Insira um nome'
+    }else if(field == 'preco' && controls[field].invalid){
+      if(controls[field].hasError('required')) return 'Insira um preço'
+      if(controls[field].hasError('min')) return 'Insira um valor maior'
+      if(controls[field].hasError('pattern')) return 'Insira um valor válido'
+    }else if(field == 'categoria' && controls[field].invalid){
+      return 'Insira uma categoria'
+    }else if(field == 'descricao' && controls[field].invalid){
+      return 'Insira uma descrição'
+    }else if(field == 'foto' && controls[field].invalid){
+      return 'Insira uma foto'
+    }
   }
 
   closeDialog(): void {
