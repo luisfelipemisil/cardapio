@@ -33,7 +33,7 @@ Feature: Cadastrar itens no cardápio
 
     Scenario: Cancelar cadastro (sair da tela)
         Given o popup "Cadastrar Item"
-        When eu clicar no botão demarcado por um "X"
+        When eu clicar no botão "Fechar"
         Then o popup "Cadastrar Item" será fechado, e todos os campos preenchidos serão descartados
 
     Scenario: Negar cadastro - GUI
@@ -42,9 +42,16 @@ Feature: Cadastrar itens no cardápio
         And clicar no botão "Confirmar"
         Then o snackbar "Feedback", com uma mensagem de recusa, será exibida, informando o motivo pelo qual o item não pôde ser adicionado
 
-    Scenario: Negar cadastro - Serviço  
+    Scenario: Negar cadastro por preenchimento indevido - Serviço  
         Given o sistema tem seus itens armazenados
         When o sistema receber uma solicitação de cadastrar novo item
         And os campos não estiverem devidamente preenchidos
         Then uma resposta de negação será enviada ao cliente
-        And o sistema tem seus itens armazenados      
+        And o sistema tem seus itens armazenados
+
+    Scenario: Negar cadastro por já existir um - Serviço  
+        Given o sistema tem seus itens armazenados
+        When o sistema receber uma solicitação de cadastrar novo item
+        And já existir um item com o mesmo nome
+        Then uma resposta de negação será enviada ao cliente
+        And o sistema tem seus itens armazenados   

@@ -1,0 +1,14 @@
+<!-- TODO accordion? check in expansion-panel page -->
+<mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+        <img *ngIf="item.foto != ''" matListAvatar src="item.foto"/>
+        <mat-panel-title style="flex-grow: 0;">
+            {{item.nome}}
+        </mat-panel-title>
+        <mat-panel-description>
+            {{item.preco}}
+        </mat-panel-description>
+        <mat-checkbox [checked]="item.checked" ></mat-checkbox>
+    </mat-expansion-panel-header>
+    <p>{{item.descricao}}</p>
+</mat-expansion-panel>
