@@ -1,3 +1,7 @@
+# Nota!
+# Essas features foram entregues a outro membro da equipe devido a quantidade de features que sobrou pra mim,
+# mas os arquivos continuaram aqui, pois foi apenas acordado verbalmente.
+# Esse mesmo membro desistiu da cadeira.
 
 Feature: Excluir itens no cardápio
     As a gerente
