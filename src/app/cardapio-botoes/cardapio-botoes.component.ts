@@ -34,7 +34,7 @@ export class CardapioBotoesComponent implements OnInit {
 
 export class NovoItemDialog {
   constructor(private cardapioMiddleBackService: CardapioMiddleBackService, public dialogRef: MatDialogRef<NovoItemDialog>) {
-    this.item_creation_service = this.cardapioMiddleBackService.item_creation_service
+    this.item_creation_service = this.cardapioMiddleBackService.itemCreationService
 
     this.form = this.form
   }
