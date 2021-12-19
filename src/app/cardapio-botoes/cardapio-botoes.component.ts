@@ -117,7 +117,6 @@ export class NovoItemDialog {
           // ? Caso não seja
           }else if(result == 'internet'){
             this._snackbar.open('Verifique sua conexão!', 'Fechar')
-            setTimeout(() => this.invalidForm = false, 2500)
           }
         })
       }
@@ -151,11 +150,10 @@ export class NovaCategoriaDialog {
 
     let resultado = this.cardapioMiddleBackService._checkCategoryExistence(categoria)
     resultado.subscribe(exists => {
-      console.log(`retorno é ${exists}`)
-      console.log(exists)
       if(exists){
-        //deny, stay on page
-        console.log('exists!')
+        // ? negue, continue na página
+
+        this.invalidForm = true
         setTimeout(() => this.invalidForm = false, 2500)
       }else{
         this._snackbar.open('Categoria Criada!', 'Fechar')
