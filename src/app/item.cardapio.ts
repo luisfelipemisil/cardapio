@@ -14,3 +14,8 @@ export interface ItemCardapioList { //this is for showing
   categoria: string, //TODO set this
   checked: false
 }
+
+export interface CategoriaCardapio {
+  categoria: string,
+  itens: ItemCardapioList[]
+}

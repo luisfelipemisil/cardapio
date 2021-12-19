@@ -2,9 +2,14 @@
     <!-- TODO style this! -->
     <!-- TODO category grouping -->
     <mat-accordion multi *ngIf="items != []">
-        <div *ngFor="let item of items">
-            <app-item-cardapio [item]="item" ></app-item-cardapio>
+
+        <div *ngFor="let categoria of itensCategoria">
+            <p [ngStyle]="{'margin': '2% 0% 0% 3%'}"> {{categoria.categoria}} </p>
+            <mat-divider></mat-divider>
+
+            <app-item-cardapio *ngFor="let item of categoria.itens" [item]="item" ></app-item-cardapio>
         </div>
+
         
     </mat-accordion>
     <div *ngIf="items.length == 0" [ngStyle]="{'flex': 1, 'justify-content': 'align-center', 'flex-direction': 'row'}">
