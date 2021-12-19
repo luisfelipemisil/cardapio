@@ -47,6 +47,8 @@ export class NovoItemDialog {
       descricao: '',
       categoria: ''
     })
+
+    this.invalidForm = this.invalidForm
   }
 
   tellRefresh: any
@@ -80,13 +82,20 @@ export class NovoItemDialog {
     this.dialogRef.close();
   }
 
+  invalidForm: boolean = false
+
   onSubmit(form: ItemCardapio):void { // ? primeiro ele roda aqui
     this.cardapioMiddleBackService.itemCreationService(form).subscribe((result: any) => {
-      if(result){
+      if(result == true){
         this._snackbar.open('Sucesso!', 'Fechar')
         this.closeDialog()
       }else{
-        this._snackbar.open('Algo deu errado!', 'Fechar')
+        if(result == 'internet'){
+          this._snackbar.open('Verifique sua conexão!', 'Fechar')
+        }else{
+          this.invalidForm = true
+          this._snackbar.open('Algo deu errado!', 'Fechar')
+        }
       }
       
     })

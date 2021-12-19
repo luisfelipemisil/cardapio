@@ -20,7 +20,7 @@ export class CardapioMiddleBackService {
         const docs = documents.docs
         if(docs.length >= 1){
           console.log('not setting')
-          return false
+          return 'exists'
         }else{
           console.log('setting')
           result = setDoc(doc(firestore, 'rest-casimiro', form.nome), form).then( outcome => {
@@ -32,7 +32,7 @@ export class CardapioMiddleBackService {
             return true
           }, outcome => {
             //failure, internet
-            return false
+            return 'internet'
           })
 
           const observable = from(result)

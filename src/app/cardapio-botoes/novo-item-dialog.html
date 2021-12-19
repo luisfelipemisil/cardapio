@@ -15,8 +15,7 @@
 <h2 mat-dialog-title>Novo Item</h2>
 
 <form [formGroup]="formControl" (ngSubmit)="onSubmit(formControl.value)"><mat-dialog-content>
-    
-    <!-- TODO rules for the form! -->
+
     <mat-form-field appearance="fill" [ngClass]="'growable'">
         <mat-label>Nome</mat-label>
         <input matInput formControlName="nome" name="nome">
@@ -43,11 +42,12 @@
 
     <input multiple type="file" formControlName="foto" name="foto">
     <!-- <mat-error *ngIf="formControl.controls['foto'].invalid" > {{getErrorMessage('foto')}} </mat-error> -->
-    <br><mat-label>Foto</mat-label>
+    <mat-label>Foto</mat-label>
     
 </mat-dialog-content>
 
 <mat-dialog-actions>
     <button type="submit" mat-raised-button [disabled]="formControl.invalid">Criar Item</button>
     <button mat-raised-button mat-dialog-close>Fechar</button>
+    <mat-error *ngIf="invalidForm"> O Nome já existe! </mat-error>
 </mat-dialog-actions></form>
