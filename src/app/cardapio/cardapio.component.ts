@@ -26,9 +26,8 @@ export class CardapioComponent implements OnInit {
   }
 
   feedList(): void {
-    console.log('ran again')
     // change everytime getItemList runs
-    this.cardapioMiddleBackService.getItemList().subscribe(items => this.items = items)
+    this.cardapioMiddleBackService.getItemList().subscribe(items => {this.items = items; console.log(items)})
   }
 
 }

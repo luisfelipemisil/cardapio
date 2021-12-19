@@ -7,7 +7,7 @@
         </div>
         
     </mat-accordion>
-    <div *ngIf="items == []" [ngStyle]="{'flex': 1, 'justify-content': 'align-center'}">
+    <div *ngIf="items.length == 0" [ngStyle]="{'flex': 1, 'justify-content': 'align-center', 'flex-direction': 'row'}">
         <p>Não há itens a serem exibidos!</p>
         <p>Tente inserir algum :)</p>
     </div>
