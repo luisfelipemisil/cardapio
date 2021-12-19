@@ -104,7 +104,7 @@ export class CardapioMiddleBackService {
     let queryToRun = query(collection(firestore, 'rest-casimiro'), condicao)
 
     let queryPromise = getDocs(queryToRun).then(docs => {
-      console.log(`existe ${docs.docs.length} docs c a categoria ${categoria}`)
+
       if(docs.docs.length == 0){
         return false
       }else{
