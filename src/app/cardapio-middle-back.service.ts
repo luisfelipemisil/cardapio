@@ -97,11 +97,11 @@ export class CardapioMiddleBackService {
   categorias: string[] = []
 
   // ? checa a existência, retorna o documento a qual pertence?
-  _checkCategoryExistence(categoria: string): Observable<any> {
+  checkCategoryExistence(categoria: string): Observable<any> {
 
     let condicao = where('categoria', '==', categoria)
 
-    let queryToRun = query(collection(firestore, 'rest-casimiro'), condicao)
+    let queryToRun = query(collection(firestore, 'rest-casimiro-cat'), condicao)
 
     let queryPromise = getDocs(queryToRun).then(docs => {
 
@@ -115,4 +115,16 @@ export class CardapioMiddleBackService {
     const observable = from(queryPromise)
     return observable
   }
+
+  addCategory(categoria: string): Observable<any> {
+    // ? seta o Doc, passando o documento e o valor
+    let docPromise = setDoc(doc(firestore, 'rest-casimiro-cat', categoria), {categoria: categoria})
+
+    // ? recebe a promise
+    let result = docPromise.then(() => true, () => false)
+
+    // ? retorna um observable
+    return from(result)
+  }
+
 }

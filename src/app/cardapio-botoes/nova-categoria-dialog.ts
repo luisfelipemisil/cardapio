@@ -23,16 +23,24 @@ import { ExcluirItemDialog } from './excluir-item-dialog';
     sendCategoria(): void {
       let categoria = this.categoria.value
   
-      let resultado = this.cardapioMiddleBackService._checkCategoryExistence(categoria)
+      let resultado = this.cardapioMiddleBackService.checkCategoryExistence(categoria)
       resultado.subscribe(exists => {
         if(exists){
-          // ? negue, continue na página
-  
-          this.invalidForm = true
-          setTimeout(() => this.invalidForm = false, 2500)
+            // ? negue, continue na página
+    
+            this.invalidForm = true
+            setTimeout(() => this.invalidForm = false, 2500)
         }else{
-          this._snackbar.open('Categoria Criada!', 'Fechar', {duration: 2500})
-          this.closeDialog()
+            let result = this.cardapioMiddleBackService.addCategory(categoria)
+
+            result.subscribe(outcome => {
+                if(outcome){
+                    this._snackbar.open('Categoria criada!', 'Fechar', {duration: 2500})
+                    this.closeDialog()
+                }else if(!outcome){
+                    this._snackbar.open('Erro de conexão', 'Fechar', {duration: 2500})
+                }
+            })
         }
       })
     }
