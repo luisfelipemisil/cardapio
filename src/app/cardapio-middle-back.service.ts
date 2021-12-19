@@ -22,25 +22,25 @@ export class CardapioMiddleBackService {
           console.log('not setting')
           return false
         }else{
-          // console.log('setting')
-          // observable = from(setDoc(doc(firestore, 'rest-casimiro', form.nome), form))
-          // observable.subscribe((event: any) => {
-          //     console.log(event)
+          console.log('setting')
+          result = setDoc(doc(firestore, 'rest-casimiro', form.nome), form).then( outcome => {
+            //success
 
-          //     // updates list
-          //     this.tellRefresh.emit()
+            // updates list
+            this.tellRefresh.emit()
 
-          //     return true
-          //   })
+            return true
+          }, outcome => {
+            //failure, internet
+            return false
+          })
 
-          // return observable
-          return true
+          const observable = from(result)
+          return observable
         }
       })
     
     const observable = from(result)
-    console.log('first entry')
-    console.log(observable)
     return observable
   }
 
@@ -51,8 +51,7 @@ export class CardapioMiddleBackService {
     //   console.log(result)
     //   return true
     // })
-    console.log('returning this:')
-    console.log(observable)
+
     return observable
   }
 

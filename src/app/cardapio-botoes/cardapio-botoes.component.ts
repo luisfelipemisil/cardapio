@@ -82,9 +82,13 @@ export class NovoItemDialog {
 
   onSubmit(form: ItemCardapio):void { // ? primeiro ele roda aqui
     this.cardapioMiddleBackService.itemCreationService(form).subscribe((result: any) => {
-      console.log('resultado é:')
-      console.log(result)
-      this._snackbar.open('Sucesso!', 'Fechar')
+      if(result){
+        this._snackbar.open('Sucesso!', 'Fechar')
+        this.closeDialog()
+      }else{
+        this._snackbar.open('Algo deu errado!', 'Fechar')
+      }
+      
     })
   }
 }
