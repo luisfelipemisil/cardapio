@@ -42,7 +42,7 @@ export class CardapioMiddleBackService {
             // ? emita aviso para atualizar a lista
             this.tellRefresh.emit()
 
-            return true
+            return 'ok'
 
             // ? emita o motivo da falha devido a conexão
           }, () => /*failure, internet*/ 'internet')
@@ -57,14 +57,15 @@ export class CardapioMiddleBackService {
   }
 
   itemCreationService(form: ItemCardapio): Observable<any> {
-    let observable = this._checkItemExistence(form)
+    return this._checkItemExistence(form)
+
     // observable.subscribe(result => {
     //   console.log('result é:')
     //   console.log(result)
-    //   return true
+    //   return result
     // })
 
-    return observable
+    // return observable
   }
 
   getItemList(): Observable<ItemCardapio[]> {
