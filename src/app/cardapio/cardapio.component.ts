@@ -48,6 +48,7 @@ export class CardapioComponent implements OnInit {
     //itens q pertencem a categoria
     let returnable: CategoriaCardapio[] = []
     let categorias = [...new Set(itens.map(item => item.categoria))]
+    this.cardapioMiddleBackService.categorias = categorias // TODO check if this binds
 
     categorias.forEach(categoria => {
       let temp = itens.filter(item => item.categoria == categoria)

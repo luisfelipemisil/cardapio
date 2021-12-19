@@ -49,7 +49,15 @@ export class NovoItemDialog {
     })
 
     this.invalidForm = this.invalidForm
+    
+    this.categorias = this.cardapioMiddleBackService.categorias
+    
+    this.novaCategoria = ''
   }
+
+  novaCategoria: string
+
+  categorias: string[]
 
   tellRefresh: any
 

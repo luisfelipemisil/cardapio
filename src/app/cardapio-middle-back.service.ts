@@ -93,4 +93,6 @@ export class CardapioMiddleBackService {
     const observable = from(querySnapshot);
     return observable
   }
+
+  categorias: string[] = []
 }
