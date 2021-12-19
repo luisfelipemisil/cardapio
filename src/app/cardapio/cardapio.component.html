@@ -1,10 +1,14 @@
 <div id="lista-cardapio">
     <!-- TODO style this! -->
     <!-- TODO category grouping -->
-    <mat-accordion multi>
+    <mat-accordion multi *ngIf="items != []">
         <div *ngFor="let item of items">
             <app-item-cardapio [item]="item" ></app-item-cardapio>
         </div>
         
     </mat-accordion>
+    <div *ngIf="items == []" [ngStyle]="{'flex': 1, 'justify-content': 'align-center'}">
+        <p>Não há itens a serem exibidos!</p>
+        <p>Tente inserir algum :)</p>
+    </div>
 </div>
