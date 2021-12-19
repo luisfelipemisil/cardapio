@@ -8,7 +8,7 @@ import { ItemCardapio } from './item.cardapio';
 export class CardapioMiddleBackService {
   constructor() { }
 
-  item_creation_service(form: ItemCardapio) {
+  item_creation_service(form: ItemCardapio): void {
     console.log('eureka!')
     console.log(form)
   }

@@ -19,20 +19,10 @@ export class CardapioBotoesComponent implements OnInit {
 
   novo_item(): void {
     const dialogRef = this.dialog.open(NovoItemDialog, {width: '50%', height: 'auto'})
-
-    dialogRef.afterClosed().subscribe(result => {
-      // TODO send request
-      console.log(`terminei, result é ${result}`)
-    });
   }
 
   excluir_item():void {
-    const dialogRef = this.dialog.open(ExcluirItemDialog, {width: '50%', height: 'auto'})
-
-    dialogRef.afterClosed().subscribe(result => {
-      // TODO send request
-      console.log('eu executo mesmo quando clico em concluir?')
-    });
+    const dialogRef = this.dialog.open(ExcluirItemDialog, {width: '50%', height: 'auto'}) 
   }
 
 }
