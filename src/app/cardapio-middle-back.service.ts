@@ -1,9 +1,8 @@
-import { Injectable } from '@angular/core';
-import { ItemCardapio, mocks } from './item.cardapio';
-import { collection, getDocs } from 'firebase/firestore';
+import { Injectable, EventEmitter } from '@angular/core';
+import { ItemCardapio } from './item.cardapio';
+import { collection, getDocs, setDoc, doc } from 'firebase/firestore';
 import { firestore } from '../firebase';
-import { Observable, of } from 'rxjs';
-import { from } from 'rxjs';
+import { Observable, from } from 'rxjs';
 
 @Injectable({
   // TODO provide only when necessary
@@ -12,13 +11,22 @@ import { from } from 'rxjs';
 export class CardapioMiddleBackService {
   constructor() { }
 
+  // TODO change to subject so its not necessary to 
+  tellRefresh = new EventEmitter<any> (true);
+
   itemCreationService(form: ItemCardapio): void {
-    console.log('eureka!')
-    console.log(form)
+    // TODO don't allow overwriting
+    const observable = from(setDoc(doc(firestore, 'rest-casimiro', form.nome), form))
+    
+    // updates list
+    this.tellRefresh.emit()
+    console.log(this.tellRefresh)
+
+    //TODO set this to return what feedback should give
+    // return true
   }
 
   getItemList(): Observable<ItemCardapio[]> {
-
     const querySnapshot = getDocs(collection(firestore, 'rest-casimiro')).then((result) => {
       let items: ItemCardapio[] = []
       result.docs.forEach((values) => items.push({

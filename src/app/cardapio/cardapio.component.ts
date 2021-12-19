@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ItemCardapio } from '../item.cardapio';
 import { CardapioMiddleBackService } from '../cardapio-middle-back.service';
+import { Observer } from 'rxjs';
 
 @Component({
   selector: 'app-cardapio',
@@ -9,14 +10,15 @@ import { CardapioMiddleBackService } from '../cardapio-middle-back.service';
 })
 
 // TODO this should check for changes in the server periodically (even better if it emits automatically)
-// TODO listen to changes from the interaction button pop-ups
 export class CardapioComponent implements OnInit {
 
-  //TODO remove later
   items: ItemCardapio[]
 
   constructor(private cardapioMiddleBackService: CardapioMiddleBackService) {
     this.items = []
+    this.cardapioMiddleBackService.tellRefresh.subscribe(() => {
+      this.feedList()
+    })
   }
 
   ngOnInit(): void {
@@ -24,8 +26,9 @@ export class CardapioComponent implements OnInit {
   }
 
   feedList(): void {
-    this.cardapioMiddleBackService.getItemList()
-      .subscribe(items => this.items = items)
+    console.log('ran again')
+    // change everytime getItemList runs
+    this.cardapioMiddleBackService.getItemList().subscribe(items => this.items = items)
   }
 
 }

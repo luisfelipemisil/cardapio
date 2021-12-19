@@ -9,7 +9,6 @@ import { ItemCardapio } from '../item.cardapio';
   styleUrls: ['./cardapio-botoes.component.css']
 })
 
-// TODO emit to the list when changes are made, telling it to refetch the list
 export class CardapioBotoesComponent implements OnInit {
 
   constructor(private cardapioMiddleBackService: CardapioMiddleBackService,public dialog: MatDialog) { }
@@ -34,12 +33,18 @@ export class CardapioBotoesComponent implements OnInit {
 
 export class NovoItemDialog {
   constructor(private cardapioMiddleBackService: CardapioMiddleBackService, public dialogRef: MatDialogRef<NovoItemDialog>) {
-    this.item_creation_service = this.cardapioMiddleBackService.itemCreationService
+    this.itemCreationService = this.cardapioMiddleBackService.itemCreationService
+
+    this.tellRefresh = this.cardapioMiddleBackService.tellRefresh
 
     this.form = this.form
   }
 
-  item_creation_service: any = () => {}
+  // TODO correct types here
+  // TODO refactor this
+  itemCreationService: any = () => {}
+
+  tellRefresh: any
 
   form: ItemCardapio = {
     nome: '',
