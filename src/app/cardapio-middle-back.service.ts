@@ -20,7 +20,6 @@ export class CardapioMiddleBackService {
     
     // updates list
     this.tellRefresh.emit()
-    console.log(this.tellRefresh)
 
     //TODO set this to return what feedback should give
     // return true
