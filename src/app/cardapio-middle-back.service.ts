@@ -14,26 +14,38 @@ export class CardapioMiddleBackService {
   // TODO change to subject so its not necessary to 
   tellRefresh = new EventEmitter<any> (true);
 
+  // ? analisa se já existe um Item de mesmo nome
   _checkItemExistence(form: ItemCardapio) : Observable<any> {
-    let result: any = getDocs(query(collection(firestore, 'rest-casimiro'), where('nome', '==', form.nome)))
+    // ? um parâmetro da query que filtra a busca
+    let queryConstrain = where('nome', '==', form.nome)
+
+    // ? a própria query, indicando aonde procurar o documento, e as restrições
+    let queryRef = query(collection(firestore, 'rest-casimiro'), queryConstrain)
+
+    // ? uma Promise, a ser resolvida
+    let queryPromise = getDocs(queryRef)
+
+    let result: any = queryPromise
       .then(documents => {
         const docs = documents.docs
-        if(docs.length >= 1){
-          console.log('not setting')
-          return 'exists'
-        }else{
-          console.log('setting')
-          result = setDoc(doc(firestore, 'rest-casimiro', form.nome), form).then( outcome => {
-            //success
 
-            // updates list
+        // ? Se o resultado tiver alguma entrada, então ele já existe no menu
+        if(docs.length >= 1) {
+          return 'exists' 
+        }else{
+          // ? Não existe entrada, sete o Doc com as informações do form
+          let docPromise = setDoc(doc(firestore, 'rest-casimiro', form.nome), form)
+
+          // ? resolva, caso positivo
+          result = docPromise.then( () => {
+
+            // ? emita aviso para atualizar a lista
             this.tellRefresh.emit()
 
             return true
-          }, outcome => {
-            //failure, internet
-            return 'internet'
-          })
+
+            // ? emita o motivo da falha devido a conexão
+          }, () => /*failure, internet*/ 'internet')
 
           const observable = from(result)
           return observable
@@ -56,8 +68,15 @@ export class CardapioMiddleBackService {
   }
 
   getItemList(): Observable<ItemCardapio[]> {
-    const querySnapshot = getDocs(collection(firestore, 'rest-casimiro')).then((result) => {
+    // ? Pega todos os docs da coleção 'rest-casimiro' como um promise
+    let queryPromise = getDocs(collection(firestore, 'rest-casimiro'))
+
+    // ? Resolve o promise
+    const querySnapshot = queryPromise.then((result) => {
+      // ? Array a ser retornado
       let items: ItemCardapio[] = []
+
+      // ? Dando push verbosamente, pois ele desconhece a semelhança dos tipos
       result.docs.forEach((values) => items.push({
         nome: values.data()['nome'],
         foto: values.data()['foto'],
@@ -69,6 +88,7 @@ export class CardapioMiddleBackService {
       return items
     })
 
+    // ? Retorna um observable enquanto a query não termina
     const observable = from(querySnapshot);
     return observable
   }
