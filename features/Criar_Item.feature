@@ -33,7 +33,7 @@ Feature: Cadastrar itens no cardápio
 
     Scenario: Cancelar cadastro (sair da tela)
         Given o popup "Cadastrar Item"
-        When eu clicar no botão demarcado por um "X"
+        When eu clicar no botão "Fechar"
         Then o popup "Cadastrar Item" será fechado, e todos os campos preenchidos serão descartados
 
     Scenario: Negar cadastro - GUI

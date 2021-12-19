@@ -15,12 +15,14 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 // Custom modules
 import {CardapioComponent} from './cardapio/cardapio.component';
 import { ItemCardapioComponent } from './item-cardapio/item-cardapio.component';
 import { CardapioBotoesComponent, ExcluirItemDialog, NovoItemDialog } from './cardapio-botoes/cardapio-botoes.component'
+import { BasicSnackBar } from './basic.snackbar';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { CardapioBotoesComponent, ExcluirItemDialog, NovoItemDialog } from './ca
     ItemCardapioComponent,
     CardapioBotoesComponent,
     NovoItemDialog,
-    ExcluirItemDialog
+    ExcluirItemDialog,
+    BasicSnackBar
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,8 @@ import { CardapioBotoesComponent, ExcluirItemDialog, NovoItemDialog } from './ca
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

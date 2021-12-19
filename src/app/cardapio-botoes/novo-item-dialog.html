@@ -14,7 +14,7 @@
 
 <h2 mat-dialog-title>Novo Item</h2>
 
-<form [formGroup]="formControl" (ngSubmit)="itemCreationService(formControl.value); closeDialog()"><mat-dialog-content>
+<form [formGroup]="formControl" (ngSubmit)="onSubmit(formControl.value)"><mat-dialog-content>
     
     <!-- TODO rules for the form! -->
     <mat-form-field appearance="fill" [ngClass]="'growable'">

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CardapioMiddleBackService } from '../cardapio-middle-back.service';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ItemCardapio } from '../item.cardapio';
-import { Validators, FormBuilder } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-cardapio-botoes',
@@ -33,9 +34,8 @@ export class CardapioBotoesComponent implements OnInit {
 })
 
 export class NovoItemDialog {
-  constructor(private cardapioMiddleBackService: CardapioMiddleBackService, public dialogRef: MatDialogRef<NovoItemDialog>, private fb: FormBuilder) {
-    this.itemCreationService = this.cardapioMiddleBackService.itemCreationService
-
+  constructor(private cardapioMiddleBackService: CardapioMiddleBackService, public dialogRef: MatDialogRef<NovoItemDialog>, private fb: FormBuilder, private _snackbar: MatSnackBar) {
+    // TODO refactor this
     this.tellRefresh = this.cardapioMiddleBackService.tellRefresh
 
     this.formControl = this.formControl
@@ -49,10 +49,6 @@ export class NovoItemDialog {
     })
   }
 
-  // TODO correct types here
-  // TODO refactor this
-  itemCreationService: any = () => {}
-
   tellRefresh: any
 
   formControl = this.fb.group({
@@ -60,7 +56,7 @@ export class NovoItemDialog {
     foto: [''], //TODO correct validation in photo
     preco: [0, [Validators.required, Validators.min(1), Validators.pattern(/[0-9]/)]],
     descricao: ['', Validators.required],
-    categoria: ['', Validators.required] 
+    categoria: ['', Validators.required],
   })
 
   getErrorMessage(field: string): any {
@@ -82,6 +78,14 @@ export class NovoItemDialog {
 
   closeDialog(): void {
     this.dialogRef.close();
+  }
+
+  onSubmit(form: ItemCardapio):void { // ? primeiro ele roda aqui
+    this.cardapioMiddleBackService.itemCreationService(form).subscribe((result: any) => {
+      console.log('resultado é:')
+      console.log(result)
+      this._snackbar.open('Sucesso!', 'Fechar')
+    })
   }
 }
 
