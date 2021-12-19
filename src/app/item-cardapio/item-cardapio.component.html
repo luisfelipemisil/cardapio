@@ -1,7 +1,7 @@
 <!-- TODO accordion? check in expansion-panel page -->
 <mat-expansion-panel hideToggle>
     <mat-expansion-panel-header>
-        <img matListAvatar src="..."/>
+        <img *ngIf="item.foto != ''" matListAvatar src="item.foto"/>
         <mat-panel-title style="flex-grow: 0;">
             {{item.nome}}
         </mat-panel-title>
