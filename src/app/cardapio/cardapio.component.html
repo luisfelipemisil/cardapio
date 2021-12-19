@@ -2,8 +2,8 @@
     <!-- TODO style this! -->
     <!-- TODO category grouping -->
     <mat-accordion multi>
-        <div *ngFor="let mock of mock_stuff">
-            <app-item-cardapio [item]="mock" ></app-item-cardapio>
+        <div *ngFor="let item of items">
+            <app-item-cardapio [item]="item" ></app-item-cardapio>
         </div>
         
     </mat-accordion>

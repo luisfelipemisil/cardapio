@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ItemCardapio, mocks } from '../item.cardapio';
+import { ItemCardapio } from '../item.cardapio';
+import { CardapioMiddleBackService } from '../cardapio-middle-back.service';
 
 @Component({
   selector: 'app-cardapio',
@@ -12,14 +13,19 @@ import { ItemCardapio, mocks } from '../item.cardapio';
 export class CardapioComponent implements OnInit {
 
   //TODO remove later
-  mock_stuff: ItemCardapio[]
+  items: ItemCardapio[]
 
-  constructor() {
-    this.mock_stuff = mocks
+  constructor(private cardapioMiddleBackService: CardapioMiddleBackService) {
+    this.items = []
   }
 
   ngOnInit(): void {
-    
+    this.feedList()
+  }
+
+  feedList(): void {
+    this.cardapioMiddleBackService.getItemList()
+      .subscribe(items => this.items = items)
   }
 
 }
