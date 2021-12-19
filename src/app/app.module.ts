@@ -24,7 +24,6 @@ import {CardapioComponent} from './cardapio/cardapio.component';
 import { ItemCardapioComponent } from './item-cardapio/item-cardapio.component';
 import { CardapioBotoesComponent, ExcluirItemDialog, NovoItemDialog } from './cardapio-botoes/cardapio-botoes.component'
 import { BasicSnackBar } from './basic.snackbar';
-import { CategoriasCardapioComponent } from './categorias-cardapio/categorias-cardapio.component';
 
 @NgModule({
   declarations: [
@@ -34,8 +33,7 @@ import { CategoriasCardapioComponent } from './categorias-cardapio/categorias-ca
     CardapioBotoesComponent,
     NovoItemDialog,
     ExcluirItemDialog,
-    BasicSnackBar,
-    CategoriasCardapioComponent
+    BasicSnackBar
   ],
   imports: [
     BrowserModule,
