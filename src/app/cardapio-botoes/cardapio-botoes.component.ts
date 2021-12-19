@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CardapioMiddleBackService } from '../cardapio-middle-back.service';
 import { ItemCardapio } from '../item.cardapio';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-cardapio-botoes',
@@ -38,6 +39,14 @@ export class NovoItemDialog {
     this.tellRefresh = this.cardapioMiddleBackService.tellRefresh
 
     this.form = this.form
+
+    this.formControl.setValue({
+      nome: '',
+      foto: '',
+      preco: 0,
+      descricao: '',
+      categoria: ''
+    })
   }
 
   // TODO correct types here
@@ -46,12 +55,24 @@ export class NovoItemDialog {
 
   tellRefresh: any
 
+  formControl = new FormGroup({
+    nome: new FormControl(''),
+    foto: new FormControl(''),
+    preco: new FormControl(0),
+    descricao: new FormControl(''),
+    categoria: new FormControl('')
+  })
+
   form: ItemCardapio = {
     nome: '',
     foto: '',
     preco: 0,
     descricao: '',
     categoria: ''
+  }
+
+  onSubmit(): void {
+    console.log('RODEI VIU?')
   }
 
   closeDialog(): void {
