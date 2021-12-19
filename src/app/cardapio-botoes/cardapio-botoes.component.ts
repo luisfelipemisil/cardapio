@@ -104,7 +104,7 @@ export class NovoItemDialog {
       // ? Única resposta que não envolve outro observable
       if(result == 'exists'){
         this.invalidForm = true
-        this._snackbar.open('Algo deu errado!', 'Fechar')
+        this._snackbar.open('Algo deu errado!', 'Fechar', {duration: 2500})
 
         setTimeout(() => this.invalidForm = false, 2500)
       }else{
@@ -112,11 +112,11 @@ export class NovoItemDialog {
         result.subscribe((result2: any) => {
           // ? Caso segunda resposta seja um OK
           if(result2 = 'ok'){
-            this._snackbar.open('Sucesso!', 'Fechar')
+            this._snackbar.open('Sucesso!', 'Fechar', {duration: 2500})
             this.closeDialog()
           // ? Caso não seja
           }else if(result == 'internet'){
-            this._snackbar.open('Verifique sua conexão!', 'Fechar')
+            this._snackbar.open('Verifique sua conexão!', 'Fechar', {duration: 2500})
           }
         })
       }
@@ -156,7 +156,7 @@ export class NovaCategoriaDialog {
         this.invalidForm = true
         setTimeout(() => this.invalidForm = false, 2500)
       }else{
-        this._snackbar.open('Categoria Criada!', 'Fechar')
+        this._snackbar.open('Categoria Criada!', 'Fechar', {duration: 2500})
         this.closeDialog()
       }
     })
