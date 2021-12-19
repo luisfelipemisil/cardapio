@@ -63,7 +63,7 @@ export class CardapioMiddleBackService {
         foto: values.data()['foto'],
         preco: values.data()['preco'],
         descricao: values.data()['descricao'],
-        categoria: values.data()['categoria']
+        categoria: values.data()['categoria'],
       }))
       
       return items

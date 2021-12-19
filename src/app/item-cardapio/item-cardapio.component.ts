@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { ItemCardapio } from '../item.cardapio';
+import { ItemCardapioList } from '../item.cardapio';
 
 @Component({
   selector: 'app-item-cardapio',
@@ -9,7 +9,7 @@ import { ItemCardapio } from '../item.cardapio';
 
 export class ItemCardapioComponent implements OnInit {
 
-  @Input() item:ItemCardapio;
+  @Input() item:ItemCardapioList;
 
   constructor() { 
     this.item = {
@@ -17,7 +17,8 @@ export class ItemCardapioComponent implements OnInit {
       foto: '',
       preco: 0,
       descricao: '',
-      categoria: ''
+      categoria: '',
+      checked: false
     }
   }
 
