@@ -75,23 +75,23 @@ export class NovoItemDialog {
   
     onSubmit(form: ItemCardapio):void { // ? primeiro ele roda aqui
       this.cardapioMiddleBackService.itemCreationService(form).subscribe((result: any) => {
-  
+        
         // ? Única resposta que não envolve outro observable
         if(result == 'exists'){
-          this.invalidForm = true
-          this._snackbar.open('Algo deu errado!', 'Fechar', {duration: 2500})
-  
-          setTimeout(() => this.invalidForm = false, 2500)
+            this.invalidForm = true
+            this._snackbar.open('Algo deu errado!', 'Fechar', {duration: 2500})
+    
+            setTimeout(() => this.invalidForm = false, 2500)
         }else{
-          // ? Dê subscribe, pois vai retornar um observable
-          result.subscribe((result2: any) => {
+            // ? Dê subscribe, pois vai retornar um observable
+            result.subscribe((result2: any) => {
             // ? Caso segunda resposta seja um OK
             if(result2 = 'ok'){
-              this._snackbar.open('Sucesso!', 'Fechar', {duration: 2500})
-              this.closeDialog()
+                this._snackbar.open('Sucesso!', 'Fechar', {duration: 2500})
+                this.closeDialog()
             // ? Caso não seja
             }else if(result == 'internet'){
-              this._snackbar.open('Verifique sua conexão!', 'Fechar', {duration: 2500})
+                this._snackbar.open('Verifique sua conexão!', 'Fechar', {duration: 2500})
             }
           })
         }
