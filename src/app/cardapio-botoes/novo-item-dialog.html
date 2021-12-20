@@ -24,13 +24,18 @@
 
     <mat-form-field appearance="fill">
         <mat-label>Preço</mat-label>
-        <input matInput formControlName="preco" name="preco">
+        <input matInput formControlName="preco" name="preco" type="number">
         <mat-error *ngIf="formControl.controls['preco'].invalid" > {{getErrorMessage('preco')}} </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
         <mat-label>Categoria</mat-label>
-        <input matInput formControlName="categoria" name="categoria">
+        <!-- <input matInput formControlName="categoria" name="categoria"> -->
+        <mat-select formControlName="categoria">
+            <mat-option *ngFor="let categoria of categorias" [value]="categoria">
+                {{ categoria }}
+            </mat-option>
+        </mat-select>
         <mat-error *ngIf="formControl.controls['categoria'].invalid" > {{getErrorMessage('categoria')}} </mat-error>
     </mat-form-field>
 

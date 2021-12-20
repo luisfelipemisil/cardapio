@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Nova categoria</h2>
+
+<div mat-dialog-content>
+    <mat-label>Categorias:</mat-label>
+    <mat-list>
+        <mat-list-item *ngFor="let cat of categorias">
+            {{ cat }}
+        </mat-list-item>
+    </mat-list>
+
+    <mat-form-field>
+        <mat-label>Categoria</mat-label>
+        <input matInput [formControl]="categoria" name="categoria">
+    </mat-form-field>
+
+</div>
+
+<div mat-dialog-actions>
+    <button mat-raised-button (click)="sendCategoria()">Criar Categoria</button>
+    <button mat-raised-button mat-dialog-close>Fechar</button>
+    <mat-error *ngIf="invalidForm"> A categoria já existe! </mat-error>
+
+</div>

@@ -17,13 +17,17 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSelectModule} from '@angular/material/select';
 
 
 // Custom modules
 import {CardapioComponent} from './cardapio/cardapio.component';
 import { ItemCardapioComponent } from './item-cardapio/item-cardapio.component';
-import { CardapioBotoesComponent, ExcluirItemDialog, NovoItemDialog } from './cardapio-botoes/cardapio-botoes.component'
+import { CardapioBotoesComponent } from './cardapio-botoes/cardapio-botoes.component'
 import { BasicSnackBar } from './basic.snackbar';
+import { NovoItemDialog } from './cardapio-botoes/novo-item-dialog'
+import { ExcluirItemDialog } from './cardapio-botoes/excluir-item-dialog'
+import { NovaCategoriaDialog } from './cardapio-botoes/nova-categoria-dialog'
 
 @NgModule({
   declarations: [
@@ -33,7 +37,8 @@ import { BasicSnackBar } from './basic.snackbar';
     CardapioBotoesComponent,
     NovoItemDialog,
     ExcluirItemDialog,
-    BasicSnackBar
+    BasicSnackBar,
+    NovaCategoriaDialog
   ],
   imports: [
     BrowserModule,
@@ -50,7 +55,8 @@ import { BasicSnackBar } from './basic.snackbar';
     MatInputModule,
     ReactiveFormsModule,
     MatSnackBarModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

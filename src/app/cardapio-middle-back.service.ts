@@ -2,7 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { ItemCardapio } from './item.cardapio';
 import { collection, getDocs, setDoc, doc, query, where } from 'firebase/firestore';
 import { firestore } from '../firebase';
-import { Observable, from } from 'rxjs';
+import { Observable, from, map, pipe } from 'rxjs';
 
 @Injectable({
   // TODO provide only when necessary
@@ -12,7 +12,9 @@ export class CardapioMiddleBackService {
   constructor() { }
 
   // TODO change to subject so its not necessary to 
-  tellRefresh = new EventEmitter<any> (true);
+  tellRefresh = new EventEmitter<any> (true)
+
+  tellRefreshCats = new EventEmitter<any> (true)
 
   // ? analisa se já existe um Item de mesmo nome
   _checkItemExistence(form: ItemCardapio) : Observable<any> {
@@ -27,29 +29,9 @@ export class CardapioMiddleBackService {
 
     let result: any = queryPromise
       .then(documents => {
-        const docs = documents.docs
+        const len = documents.docs.length
 
-        // ? Se o resultado tiver alguma entrada, então ele já existe no menu
-        if(docs.length >= 1) {
-          return 'exists' 
-        }else{
-          // ? Não existe entrada, sete o Doc com as informações do form
-          let docPromise = setDoc(doc(firestore, 'rest-casimiro', form.nome), form)
-
-          // ? resolva, caso positivo
-          result = docPromise.then( () => {
-
-            // ? emita aviso para atualizar a lista
-            this.tellRefresh.emit()
-
-            return 'ok'
-
-            // ? emita o motivo da falha devido a conexão
-          }, () => /*failure, internet*/ 'internet')
-
-          const observable = from(result)
-          return observable
-        }
+        return len.toString()
       })
     
     const observable = from(result)
@@ -57,15 +39,31 @@ export class CardapioMiddleBackService {
   }
 
   itemCreationService(form: ItemCardapio): Observable<any> {
-    return this._checkItemExistence(form)
+    let result = this._checkItemExistence(form).pipe(map(len => {
+      // ? Se o resultado tiver alguma entrada, então ele já existe no menu
+      if(len >= 1) {
+        return 'exists'
+      }else{
+        // ? Não existe entrada, sete o Doc com as informações do form
+        let docPromise = setDoc(doc(firestore, 'rest-casimiro', form.nome), form)
 
-    // observable.subscribe(result => {
-    //   console.log('result é:')
-    //   console.log(result)
-    //   return result
-    // })
+        // ? resolva, caso positivo
+        let result = docPromise.then( () => {
 
-    // return observable
+          // ? emita aviso para atualizar a lista
+          this.tellRefresh.emit()
+
+          return 'ok'
+
+          // ? emita o motivo da falha devido a conexão
+        }, () => /*failure, internet*/ 'internet')
+
+        const observable = from(result)
+        return observable
+      }
+    }))
+    
+    return result
   }
 
   getItemList(): Observable<ItemCardapio[]> {
@@ -93,4 +91,60 @@ export class CardapioMiddleBackService {
     const observable = from(querySnapshot);
     return observable
   }
+
+  categorias: string[] = []
+
+  // ? checa a existência, retorna o documento a qual pertence?
+  checkCategoryExistence(categoria: string): Observable<any> {
+
+    let condicao = where('categoria', '==', categoria)
+
+    let queryToRun = query(collection(firestore, 'rest-casimiro-cat'), condicao)
+
+    let queryPromise = getDocs(queryToRun).then(docs => {
+
+      if(docs.docs.length == 0){
+        return false
+      }else{
+        return true
+      }
+    })
+
+    const observable = from(queryPromise)
+    return observable
+  }
+
+  addCategory(categoria: string): Observable<any> {
+    // ? seta o Doc, passando o documento e o valor
+    let docPromise = setDoc(doc(firestore, 'rest-casimiro-cat', categoria), {categoria: categoria})
+
+    // ? recebe a promise
+    let result = docPromise.then(() => true, () => false)
+
+    // ? emite para que inscritos atualizem
+    this.tellRefreshCats.emit()
+
+    // ? retorna um observable
+    return from(result)
+  }
+
+  getCategoryList(): Observable<any> {
+    let docPromise = getDocs(collection(firestore, 'rest-casimiro-cat'))
+
+    let promise = docPromise.then(docData => {
+      let docs = docData.docs
+
+      let arrret: string[] = []
+
+      docs.forEach(doc => {
+        // console.log(`putting doc.id ${doc.id}`)
+        arrret.push(doc.id)
+      })
+
+      return arrret
+    })
+
+    return from(promise)
+  }
+
 }
