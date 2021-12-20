@@ -127,4 +127,23 @@ export class CardapioMiddleBackService {
     return from(result)
   }
 
+  getCategoryList(): Observable<any> {
+    let docPromise = getDocs(collection(firestore, 'rest-casimiro-cat'))
+
+    let promise = docPromise.then(docData => {
+      let docs = docData.docs
+
+      let arrret: string[] = []
+
+      docs.forEach(doc => {
+        // console.log(`putting doc.id ${doc.id}`)
+        arrret.push(doc.id)
+      })
+
+      return arrret
+    })
+
+    return from(promise)
+  }
+
 }

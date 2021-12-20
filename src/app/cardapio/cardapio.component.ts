@@ -38,24 +38,17 @@ export class CardapioComponent implements OnInit {
         trueItem['checked'] = false
         this.items.push(trueItem)
       })
+    })
+
+    this.cardapioMiddleBackService.getCategoryList().subscribe(cats => {
+      let returnable: CategoriaCardapio[] = []
       
-      this.itensCategoria = this.sortCategoria(this.items)
+      cats.forEach((categoria: string) => {
+        let temp = this.items.filter(item => item.categoria == categoria)
+        returnable.push({categoria: categoria, itens: temp})
+      })
+
+      this.itensCategoria = returnable
     })
   }
-
-  sortCategoria(itens: ItemCardapioList[]): CategoriaCardapio[] {
-    //categoria
-    //itens q pertencem a categoria
-    let returnable: CategoriaCardapio[] = []
-    let categorias = [...new Set(itens.map(item => item.categoria))]
-    this.cardapioMiddleBackService.categorias = categorias // TODO check if this binds
-
-    categorias.forEach(categoria => {
-      let temp = itens.filter(item => item.categoria == categoria)
-      returnable.push({categoria: categoria, itens: temp})
-    })
-
-    return returnable
-  }
-
 }

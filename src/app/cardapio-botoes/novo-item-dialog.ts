@@ -25,9 +25,13 @@ export class NovoItemDialog {
         categoria: ''
       })
   
+      this.categorias = []
+
       this.invalidForm = this.invalidForm
       
-      this.categorias = this.cardapioMiddleBackService.categorias
+      this.cardapioMiddleBackService.getCategoryList().subscribe(lista => {
+        this.categorias = lista
+      })
       
       this.novaCategoria = ''
     }
