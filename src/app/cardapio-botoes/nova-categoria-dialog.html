@@ -1,6 +1,13 @@
 <h2 mat-dialog-title>Nova categoria</h2>
 
 <div mat-dialog-content>
+    <mat-label>Categorias:</mat-label>
+    <mat-list>
+        <mat-list-item *ngFor="let cat of categorias">
+            {{ cat }}
+        </mat-list-item>
+    </mat-list>
+
     <mat-form-field>
         <mat-label>Categoria</mat-label>
         <input matInput [formControl]="categoria" name="categoria">

@@ -16,9 +16,18 @@ import { ExcluirItemDialog } from './excluir-item-dialog';
     constructor(private cardapioMiddleBackService: CardapioMiddleBackService, private _snackbar: MatSnackBar, public dialogRef: MatDialogRef<NovoItemDialog>) {
       this.categoria = this.categoria
       this.invalidForm = this.invalidForm
+      this.categorias = this.categorias
+
+      this.cardapioMiddleBackService.tellRefreshCats.subscribe(() => {
+        this.cardapioMiddleBackService.getCategoryList()
+            .subscribe(cats => this.categorias = cats)    
+      })
+      
     }
   
     categoria = new FormControl('')
+
+    categorias: string[] = []
   
     sendCategoria(): void {
       let categoria = this.categoria.value
@@ -50,4 +59,9 @@ import { ExcluirItemDialog } from './excluir-item-dialog';
     }
   
     invalidForm: boolean = false
+
+    ngOnInit() {
+        this.cardapioMiddleBackService.getCategoryList()
+            .subscribe(cats => this.categorias = cats)
+    }
   }

@@ -12,7 +12,9 @@ export class CardapioMiddleBackService {
   constructor() { }
 
   // TODO change to subject so its not necessary to 
-  tellRefresh = new EventEmitter<any> (true);
+  tellRefresh = new EventEmitter<any> (true)
+
+  tellRefreshCats = new EventEmitter<any> (true)
 
   // ? analisa se já existe um Item de mesmo nome
   _checkItemExistence(form: ItemCardapio) : Observable<any> {
@@ -122,6 +124,9 @@ export class CardapioMiddleBackService {
 
     // ? recebe a promise
     let result = docPromise.then(() => true, () => false)
+
+    // ? emite para que inscritos atualizem
+    this.tellRefreshCats.emit()
 
     // ? retorna um observable
     return from(result)
